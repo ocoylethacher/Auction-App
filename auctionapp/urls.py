@@ -9,10 +9,13 @@ from django.contrib import admin
 from django.contrib.sitemaps.views import sitemap
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.views.static import serve
+from django.views.generic.base import RedirectView
 
 admin.autodiscover()
 
 urlpatterns = [
+    url(r'^$', RedirectView.as_view(url='/en/donations/')),
+    #url(r'^en/', RedirectView.as_view(url='/')),
     url(r'^sitemap\.xml$', sitemap,
         {'sitemaps': {'cmspages': CMSSitemap}}),
 ]
